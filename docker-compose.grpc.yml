@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  grpcserver:
+    container_name: grpcserver
+    build:
+      context: ./
+      dockerfile: ./docker/grpc/Dockerfile
+    environment:
+      RUSPROFILE_HOST: "https://www.rusprofile.ru/search"
+      GRPC_PORT: "8090"
+    networks:
+      - rusprofile
+    ports:
+      - "0.0.0.0:8090:8090"
+
+networks:
+  rusprofile:
+    external: true

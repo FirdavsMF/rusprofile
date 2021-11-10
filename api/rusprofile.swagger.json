@@ -1,0 +1,112 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "rusprofile.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "rusprofile"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/getCompany": {
+      "post": {
+        "operationId": "rusprofile_GetCompany",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rusprofileCompany"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rusprofileGetCompanyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "rusprofile"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "rusprofileCompany": {
+      "type": "object",
+      "properties": {
+        "inn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kpp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "ownerName": {
+          "type": "string"
+        }
+      }
+    },
+    "rusprofileGetCompanyRequest": {
+      "type": "object",
+      "properties": {
+        "inn": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

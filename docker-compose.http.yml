@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  httpserver:
+    container_name: httpserver
+    build:
+      context: ./
+      dockerfile: ./docker/http/Dockerfile
+    environment:
+      HTTP_PORT: "8080"
+      GRPC_PORT: "8090"
+    depends_on:
+      - grpcserver
+    networks:
+      - rusprofile
+    ports:
+      - "0.0.0.0:8080:8080"
+
+networks:
+  rusprofile:
+    external: true
